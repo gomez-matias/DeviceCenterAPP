@@ -1,0 +1,388 @@
+<details close class="absolute top-0 w-full bg-white z-50 overflow-hidden border border-gray-200 rounded">
+  <summary
+    class="select-none flex items-center justify-between px-5 py-3 bg-gray-100"
+  >
+    <span class="text-sm font-medium"> Mostrar Filtros </span>
+
+    <svg
+      class="w-5 h-5"
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M4 6h16M4 12h16M4 18h16"
+      />
+    </svg>
+  </summary>
+
+  <form action="" class="border-t border-gray-200 lg:border-t-0">
+    <fieldset>
+      <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+        Estado
+      </legend>
+      <div class="px-5 py-6 space-y-2">
+        <div class="flex items-center">
+          <input
+            id="sin_revisar"
+            type="checkbox"
+            name="type[sin_revisar]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+          <label for="sin_revisar" class="ml-3 text-sm font-medium"> Sin Revisar </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="presupuestado"
+            type="checkbox"
+            name="type[presupuestado]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+          <label for="presupuestado" class="ml-3 text-sm font-medium"> Presupuestado </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="sin_solucion"
+            type="checkbox"
+            name="type[sin_solucion]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+          <label for="sin_solucion" class="ml-3 text-sm font-medium">
+            Sin solucion
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="reparado"
+            type="checkbox"
+            name="type[reparado]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label for="reparado" class="ml-3 text-sm font-medium">
+            Reparado
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            id="anulado"
+            type="checkbox"
+            name="type[anulado]"
+            class="w-5 h-5 border-gray-300 rounded"
+          />
+
+          <label for="anulado" class="ml-3 text-sm font-medium">
+            Anulado
+          </label>
+        </div>
+
+        <div class="pt-2">
+          <button type="button" class="text-xs text-gray-500 underline">
+            Desmarcar Estados
+          </button>
+        </div>
+      </div>
+    </fieldset>
+
+    <div>
+      <fieldset>
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+          Estados del Presupuesto
+        </legend>
+
+        <div class="px-5 py-6 space-y-2">
+          <div class="flex items-center">
+            <input
+              id="en_espera"
+              type="checkbox"
+              name="age[en_espera]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="en_espera" class="ml-3 text-sm font-medium"> En espera de Confirmacion </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="aceptado"
+              type="checkbox"
+              name="age[aceptado]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="aceptado" class="ml-3 text-sm font-medium"> Aceptado </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="rechazado"
+              type="checkbox"
+              name="age[rechazado]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="rechazado" class="ml-3 text-sm font-medium"> Rechazado </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="a_medias"
+              type="checkbox"
+              name="age[a_medias]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="a_medias" class="ml-3 text-sm font-medium"> Aceptado a Medias </label>
+          </div>
+
+          <div class="pt-2">
+            <button type="button" class="text-xs text-gray-500 underline">
+              Desmarcar Estados de Presupuesto
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div>
+      <fieldset>
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+          Estados Entregas
+        </legend>
+
+        <div class="px-5 py-6 space-y-2">
+          {{!-- <div class="flex items-center">
+            <input
+              id="en_espera"
+              type="checkbox"
+              name="age[en_espera]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="en_espera" class="ml-3 text-sm font-medium"> Entregado </label>
+          </div> --}}
+
+          <div class="flex items-center">
+            <input
+              id="aceptado"
+              type="checkbox"
+              name="age[aceptado]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="aceptado" class="ml-3 text-sm font-medium"> Retirado </label>
+          </div>
+
+          {{!-- <div class="pt-2">
+            <button type="button" class="text-xs text-gray-500 underline">
+              Desmarcar Estados de Presupuesto
+            </button>
+          </div> --}}
+        </div>
+      </fieldset>
+    </div>
+
+    <div>
+      <fieldset>
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+          Fechas
+        </legend>
+
+        <div class="px-5 py-6 space-y-2">
+          {{!-- <div class="flex items-center">
+            <input
+              id="en_espera"
+              type="checkbox"
+              name="age[en_espera]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="en_espera" class="ml-3 text-sm font-medium"> Entregado </label>
+          </div> --}}
+
+          <div class="flex items-center">
+            <input
+              id="fecha"
+              type="checkbox"
+              name="age[fecha]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="fecha" class="ml-3 text-sm font-medium"> Fecha </label>
+          </div>
+
+          {{!-- <div class="pt-2">
+            <button type="button" class="text-xs text-gray-500 underline">
+              Desmarcar Estados de Presupuesto
+            </button>
+          </div> --}}
+        </div>
+      </fieldset>
+    </div>
+
+    <div>
+      <fieldset>
+        <legend class="block w-full px-5 py-3 text-xs font-medium bg-gray-50">
+          Tecnicos
+        </legend>
+
+        <div class="px-5 py-6 space-y-2">
+          <div class="flex items-center">
+            <input
+              id="marcos"
+              type="checkbox"
+              name="age[marcos]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="marcos" class="ml-3 text-sm font-medium"> Marcos </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="braian"
+              type="checkbox"
+              name="age[braian]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="braian" class="ml-3 text-sm font-medium"> Braian </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="andres"
+              type="checkbox"
+              name="age[andres]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="andres" class="ml-3 text-sm font-medium"> Andres </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="gustavo"
+              type="checkbox"
+              name="age[gustavo]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="gustavo" class="ml-3 text-sm font-medium"> Gustavo </label>
+          </div>
+
+          <div class="flex items-center">
+            <input
+              id="leo"
+              type="checkbox"
+              name="age[leo]"
+              class="w-5 h-5 border-gray-300 rounded"
+            />
+            <label for="leo" class="ml-3 text-sm font-medium"> Leo </label>
+          </div>
+
+          <div class="pt-2">
+            <button type="button" class="text-xs text-gray-500 underline">
+              Desmarcar Estados de Presupuesto
+            </button>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <div class="flex justify-between px-5 py-3 border-t border-gray-200">
+      <button
+        name="reset"
+        type="button"
+        class="text-xs font-medium text-gray-600 underline rounded"
+      >
+        Desmarcar Todos
+      </button>
+
+      <button
+        name="commit"
+        type="button"
+        class="px-5 py-3 text-xs font-medium text-white bg-green-600 rounded"
+      >
+        Aplicar Filtros
+      </button>
+    </div>
+    
+  </form>
+</details>
+
+
+
+<div class="overflow-x-auto">
+  <table class="min-w-full text-sm divide-y divide-gray-200">
+    <thead>
+      <tr>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            N° Orden
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Cliente
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Fecha Ingreso
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Estado Actual
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Tipo de Equipo
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Marca
+          </div>
+        </th>
+        <th class="p-4 font-medium text-left text-gray-900 whitespace-nowrap">
+          <div class="flex items-center">
+            Modelo
+          </div>
+        </th>
+      </tr>
+    </thead>
+
+    <tbody class="divide-y divide-gray-100">
+      <tr>
+        <td class="p-4 font-medium whitespace-nowrap">Jane Doe</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">jane.doe@email.com</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">(+44) 1928 450650</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+      </tr>
+
+      <tr>
+        <td class="p-4 font-medium whitespace-nowrap">Jane Doe</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">jane.doe@email.com</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">(+44) 1928 450650</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-4235-1526</td>
+      </tr>
+
+      <tr>
+        <td class="p-4 font-medium whitespace-nowrap">Gary Barlow</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">gary.barlow@email.com</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">(+44) 2819 450650</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-1573-2468</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-1573-2468</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-1573-2468</td>
+        <td class="p-4 text-gray-700 whitespace-nowrap">SHOP-1573-2468</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+

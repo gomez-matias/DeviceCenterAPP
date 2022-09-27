@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model cliente {
+  id             Int      @id @default(autoincrement())
+  dni            String?  @db.Char(12)
+  nombre         String?  @db.VarChar(45)
+  telefono       String?  @db.Char(15)
+  domicilio      String?  @db.VarChar(45)
+  fecha_creacion DateTime @default(now()) @db.Timestamp(0)
+  orden          orden[]
+
+  @@unique([dni, nombre], map: "dni_nombre_unico")
+}
+
+model equipo {
+  id               Int              @id @default(autoincrement())
+  modelo_exacto    String?          @unique(map: "modelo_exacto") @db.VarChar(45)
+  modelo_comercial String?          @db.VarChar(30)
+  marca            String?          @db.VarChar(30)
+  tipo_equipo      String?          @db.VarChar(45)
+  costo_repuesto   costo_repuesto[]
+  equipo_imei      equipo_imei[]
+}
+
+model equipo_imei {
+  id             Int      @id @default(autoincrement())
+  imei           String?  @db.VarChar(60)
+  id_equipo      Int?
+  fecha_creacion DateTime @default(now()) @db.Timestamp(0)
+  equipo         equipo?  @relation(fields: [id_equipo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_equipo")
+  orden          orden[]
+
+  @@unique([imei, id_equipo], map: "imei_equipo_unico")
+  @@index([id_equipo], map: "fk_equipo")
+}
+
+model orden {
+  id                     Int                      @id @default(autoincrement())
+  fecha_creacion         DateTime                 @default(now()) @db.Timestamp(0)
+  id_cliente             Int
+  id_equipo_imei         Int
+  detalles               String?                  @db.VarChar(200)
+  falla                  String?                  @db.VarChar(400)
+  id_usuario             Int
+  cliente                cliente                  @relation(fields: [id_cliente], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_cliente")
+  equipo_imei            equipo_imei              @relation(fields: [id_equipo_imei], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_equipo_imei")
+  usuario                usuario                  @relation(fields: [id_usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_usuario")
+  entrega_equipo_cliente entrega_equipo_cliente[]
+  presupuesto            presupuesto[]
+
+  @@index([id_cliente], map: "fk_cliente")
+  @@index([id_equipo_imei], map: "fk_equipo_imei")
+  @@index([id_usuario], map: "fk_usuario")
+}
+
+model usuario {
+  id                     Int                      @id @default(autoincrement())
+  usuario_nombre         String                   @unique(map: "usuario_nombre") @db.VarChar(45)
+  rol                    String?                  @db.VarChar(45)
+  entrega_equipo_cliente entrega_equipo_cliente[]
+  orden                  orden[]
+}
+
+model presupuesto {
+  id                         Int              @id @default(autoincrement())
+  id_orden                   Int
+  id_tipo_arreglo            Int
+  id_repuesto                Int?
+  decision_cliente           String?          @db.VarChar(45)
+  calidad_elegida            String?          @db.VarChar(30)
+  precio_arreglo             Decimal?         @db.Decimal(7, 2)
+  fecha_aviso_cliente        DateTime         @default(now()) @db.Timestamp(0)
+  fecha_confirmacion_cliente DateTime?        @db.Timestamp(0)
+  orden                      orden            @relation(fields: [id_orden], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_orden")
+  tipo_arreglo               tipo_arreglo     @relation(fields: [id_tipo_arreglo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tipo_arreglo")
+  tipo_repuesto              tipo_repuesto?   @relation(fields: [id_repuesto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "fk_tipo_repuesto")
+  pago_orden                 pago_orden[]
+  pedido_repuesto            pedido_repuesto?
+
+  @@unique([id_orden, id_tipo_arreglo, id_repuesto], map: "presupuesto_unico")
+  @@index([id_orden], map: "fk_orden_idx")
+  @@index([id_tipo_arreglo], map: "fk_tipo_arreglo_idx")
+  @@index([id_repuesto], map: "fk_tipo_repuesto_idx")
+}
+
+model tipo_arreglo {
+  id           Int           @id @default(autoincrement())
+  tipo_arreglo String        @unique(map: "tipo_arreglo") @db.VarChar(45)
+  presupuesto  presupuesto[]
+}
+
+model tipo_repuesto {
+  id             Int              @id @default(autoincrement())
+  tipo_repuesto  String           @unique(map: "tipo_repuesto") @db.VarChar(45)
+  costo_repuesto costo_repuesto[]
+  presupuesto    presupuesto[]
+}
+
+model costo_repuesto {
+  id               Int           @id @default(autoincrement())
+  id_tipo_repuesto Int
+  id_equipo        Int
+  calidad          String        @db.VarChar(30)
+  costo_usd        Decimal       @db.Decimal(7, 2)
+  fecha_carga      DateTime      @default(now()) @db.Timestamp(0)
+  equipo           equipo        @relation(fields: [id_equipo], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "costo_repuesto_ibfk_1")
+  tipo_repuesto    tipo_repuesto @relation(fields: [id_tipo_repuesto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "costo_repuesto_ibfk_2")
+
+  @@unique([id_tipo_repuesto, calidad, id_equipo], map: "costo_repuesto_unico")
+  @@index([id_equipo], map: "fk_modelo_marca_idx")
+  @@index([id_tipo_repuesto], map: "fk_tipo_repuesto_idx")
+}
+
+model entrega_equipo_cliente {
+  id                  Int      @id @default(autoincrement())
+  id_orden            Int
+  id_usuario          Int
+  accion              String   @db.VarChar(45)
+  estado_final_equipo String   @db.VarChar(45)
+  notas_finales       String?  @db.VarChar(100)
+  fecha_hora          DateTime @default(now()) @db.Timestamp(0)
+  usuario             usuario  @relation(fields: [id_usuario], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "entrega_equipo_cliente_ibfk_1")
+  orden               orden    @relation(fields: [id_orden], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "entrega_equipo_cliente_ibfk_2")
+
+  @@unique([estado_final_equipo, id_orden, accion], map: "entrega_equipo_cliente")
+  @@index([id_usuario], map: "fk_cajero_idx")
+  @@index([id_orden], map: "fk_orden_idx")
+}
+
+model pago_orden {
+  id              Int         @id @default(autoincrement())
+  id_presupuesto  Int
+  medio_pago      String      @db.VarChar(45)
+  precio_cliente  Decimal     @db.Decimal(6, 2)
+  plata_que_llego Decimal?    @db.Decimal(6, 2)
+  fecha_hora      DateTime    @default(now()) @db.Timestamp(0)
+  presupuesto     presupuesto @relation(fields: [id_presupuesto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "id_presupuesto")
+
+  @@index([id_presupuesto], map: "id_presupuesto_idx")
+}
+
+model pedido_repuesto {
+  id                    Int         @id @default(autoincrement())
+  id_presupuesto        Int         @unique(map: "id_presupuesto")
+  estado_pedido         String?     @db.VarChar(45)
+  costo_pesos           Decimal?    @db.Decimal(7, 2)
+  fecha_encargo         DateTime    @default(now()) @db.Timestamp(0)
+  fecha_compra          DateTime?   @db.Timestamp(0)
+  fecha_entrega_tecnico DateTime?   @db.Timestamp(0)
+  presupuesto           presupuesto @relation(fields: [id_presupuesto], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "pedido_repuesto_ibfk_1")
+
+  @@index([id_presupuesto], map: "fk_presupuesto_idx")
+}

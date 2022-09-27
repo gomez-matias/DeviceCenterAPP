@@ -1,0 +1,224 @@
+{{!-- 
+<div id='modal' class="flex flex-col gap-4 justify-center items-center p-8 bg-white rounded-lg shadow-2xl absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 z-40">
+  <h2 class="text-lg font-bold">Que hacemos con el PDF?</h2>
+
+  <div class="inline-flex items-center gap-6 text-xs -space-x-px rounded-md">
+  <button
+    id="btnDescargar"
+    class="px-5 py-3 font-medium border rounded-l-md hover:z-10 focus:outline-none focus:border-indigo-600 focus:z-10 hover:bg-gray-200 active:opacity-75"
+    type="button"
+  >
+    Descargar
+  </button>
+
+  <button
+    id="btnImprimir"
+    class="px-5 py-3 font-medium border hover:z-10 focus:outline-none focus:border-indigo-600 focus:z-10 hover:bg-gray-200 active:opacity-75"
+    type="button"
+  >
+    Imprimir
+  </button>
+  </div>
+</div>
+
+<span class="absolute z-10 inset-0 bg-gray-400 opacity-30"></span> --}}
+
+<div id="ordenPDF" class="mx-5 my-7 flex flex-col gap-4">
+  <div class="flex flex-row justify-around mb-4">
+    <img class="w-40" src="../img/logoDevice.png" alt="" srcset="">
+    <div class="text-center flex flex-col gap-1">
+      <H1 class="text-center font-bold text-xl">DEVICE CENTER SAS</H1>
+      <h2 class="text-center">Orden de Reparacion</h2>
+      <div>
+        <p class="text-xs font-semibold mb-px">Velez Sarfield 3356</p>
+        <p class="text-xs font-semibold mb-px">Cordoba, Cordoba CP:5000</p>
+        <p class="text-xs font-semibold mb-px">3517372899 Whatsapp</p>
+        <p class="text-xs font-semibold mb-px">devicecenter.ar@gmail.com</p>
+        <p class="text-xs font-semibold mb-px">devicecenter.com.ar</p>
+      </div>
+    </div>
+    <span class="w-40"></span>
+  </div>
+  <div class="flex flex-row justify-between">
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Fecha de Ingreso</p><p class="text-xs">{{datosOrden.fecha}}</p>
+    </div>
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Hora de Ingreso</p><p class="text-xs">{{datosOrden.hora}}</p>
+    </div>
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Recepcionado por:</p><p class="text-xs">{{datosOrden.usuario_nombre}}</p>
+    </div>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <div class="flex flex-col gap-3">
+      <h3 class="font-medium border-b-gray-200 max-w-max  border-b-2">Informacion del Cliente</h3>
+      <div class="flex flex-row gap-5">
+        <div class="inline-flex gap-2">
+          <p class="text-xs font-medium">Nombre:</p><p class="text-xs">{{datosOrden.nombre}}</p>
+        </div>
+        <div class="inline-flex gap-2">
+          <p class="text-xs font-medium">Telefono:</p><p class="text-xs">{{datosOrden.telefono}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-xl flex flex-row gap-3 border border-gray-200 rounded h-min px-4 py-2">
+      <p>N° Orden</p><p>{{datosOrden.id}}</p>
+    </div>
+  </div>
+  <div class="flex flex-col gap-4">
+    <div class="">
+      <h3 class="leading-tight font-medium border-b-gray-200 max-w-max  border-b-2">Informacion del Equipo</h3>
+    </div>
+    {{!-- <div class="overflow-x-auto">
+      <table class="min-w-full text-sm divide-y-2 divide-gray-200">
+        <thead>
+          <tr>
+            <th class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"></th>
+            <th class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap">
+              Date of Birth
+            </th>
+            <th
+              class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+            >
+              Role
+            </th>
+            <th
+              class="px-4 py-2 font-medium text-left text-gray-900 whitespace-nowrap"
+            >
+              Salary
+            </th>
+          </tr>
+        </thead>
+
+        <tbody class="divide-y divide-gray-200">
+          <tr>
+            <td class="px-4 py-2 font-medium text-gray-900 whitespace-nowrap">
+              John Doe
+            </td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">24/05/1995</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">Web Developer</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$120,000</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-2 font-medium whitespace-nowrap">Jane Doe</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">04/11/1980</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">Web Designer</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$100,000</td>
+          </tr>
+
+          <tr>
+            <td class="px-4 py-2 font-medium whitespace-nowrap">Gary Barlow</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">24/05/1995</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">Singer</td>
+            <td class="px-4 py-2 text-gray-700 whitespace-nowrap">$20,000</td>
+          </tr>
+        </tbody>
+      </table>
+    </div> --}}
+    <div class="overflow-x-auto">
+      <table class="min-w-full text-sm divide-y-2 divide-gray-200">
+        <tr class="text-left">
+          <th class="pt-0 p-2 pl-0 text-xs font-medium text-left text-gray-900 whitespace-nowrap">Tipo de Equipo</th>
+          <th class="pt-0 p-2 pl-0 text-xs font-medium text-left text-gray-900 whitespace-nowrap">Marca</th>
+          <th class="pt-0 p-2 pl-0 text-xs font-medium text-left text-gray-900 whitespace-nowrap">Modelo Comercial</th>
+          <th class="pt-0 p-2 pl-0 text-xs font-medium text-left text-gray-900 whitespace-nowrap">Modelo Exacto</th>
+          <th class="pt-0 p-2 pl-0 text-xs font-medium text-left text-gray-900 whitespace-nowrap">Numero de Serie / IMEI</th>
+        </tr>
+        <tr class="text-left">
+          <th class="text-xs font-normal text-gray-700 whitespace-nowrap">{{datosOrden.tipo_equipo}}</th>
+          <th class="text-xs font-normal text-gray-700 whitespace-nowrap">{{datosOrden.marca}}</th>
+          <th class="text-xs font-normal text-gray-700 whitespace-nowrap">{{datosOrden.modelo_comercial}}</th>
+          <th class="text-xs font-normal text-gray-700 whitespace-nowrap">{{datosOrden.modelo_exacto}}</th>
+          <th class="text-xs font-normal text-gray-700 whitespace-nowrap">{{datosOrden.imei}}</th>
+        </tr>
+      </TABle>
+    </div>
+    <div class="">
+      <p class="text-sm font-medium">Detalles del Equipo</p>
+      <p class="text-xs">{{datosOrden.detalles}}</p>
+    </div>
+    <div>
+      <p class="text-sm font-medium">Falla</p>
+      <p class="text-xs">{{datosOrden.falla}}</p>
+    </div>
+  </div>
+
+
+
+
+
+  <hr class="bg-gray-400 h-0.5 border border-dashed my-3">
+
+
+
+
+
+
+  <div class="flex flex-row justify-between">
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Fecha de Ingreso</p><p class="text-xs">{{datosOrden.fecha}}</p>
+    </div>
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Hora de Ingreso</p><p class="text-xs">{{datosOrden.hora}}</p>
+    </div>
+    <div class="inline-flex gap-1">
+      <p class="text-xs font-medium">Recepcionado por:</p><p class="text-xs">{{datosOrden.usuario_nombre}}</p>
+    </div>
+  </div>
+  <div class="flex flex-row justify-between items-center">
+    <div class="flex flex-col gap-3">
+      <h3 class="font-medium border-b-gray-200 max-w-max  border-b-2">Informacion del Cliente</h3>
+      <div class="flex flex-row gap-5">
+        <div class="inline-flex gap-2">
+          <p class="text-xs font-medium">Nombre:</p><p class="text-xs">{{datosOrden.nombre}}</p>
+        </div>
+        <div class="inline-flex gap-2">
+          <p class="text-xs font-medium">Telefono:</p><p class="text-xs">{{datosOrden.telefono}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="text-xl flex flex-row gap-3 border border-gray-200 rounded h-min px-4 py-2">
+      <p>N° Orden</p><p>{{datosOrden.id}}</p>
+    </div>
+  </div>
+  <div class="flex flex-col gap-4 mb-5">
+    <div class="">
+      <h3 class="leading-tight font-medium border-b-gray-200 max-w-max  border-b-2">Informacion del Equipo</h3>
+    </div>
+    <table class="">
+      <tr class="text-left">
+        <th class="pt-0 p-2 pl-0 text-xs font-medium">Tipo de Equipo</th>
+        <th class="pt-0 p-2 pl-0 text-xs font-medium">Marca</th>
+        <th class="pt-0 p-2 pl-0 text-xs font-medium">Modelo Comercial</th>
+        <th class="pt-0 p-2 pl-0 text-xs font-medium">Modelo Exacto</th>
+        <th class="pt-0 p-2 pl-0 text-xs font-medium">Numero de Serie / IMEI</th>
+      </tr>
+      <tr class="text-left">
+        <th class="text-xs font-normal">{{datosOrden.tipo_equipo}}</th>
+        <th class="text-xs font-normal">{{datosOrden.marca}}</th>
+        <th class="text-xs font-normal">{{datosOrden.modelo_comercial}}</th>
+        <th class="text-xs font-normal">{{datosOrden.modelo_exacto}}</th>
+        <th class="text-xs font-normal">{{datosOrden.imei}}</th>
+      </tr>
+    </TABle>
+    <div class="">
+      <p class="text-sm font-medium">Detalles del Equipo</p>
+      <p class="text-xs">{{datosOrden.detalles}}</p>
+    </div>
+    <div>
+      <p class="text-sm font-medium">Falla</p>
+      <p class="text-xs">{{datosOrden.falla}}</p>
+    </div>
+  </div>
+
+  <div class="flex flex-row justify-between mb-2">
+      <p class="text-xs font-medium">Firma</p>
+      <p class="text-xs font-medium">Aclaracion</p>
+      <p class="text-xs font-medium">DNI</p>
+  </div>
+  <hr class="bg-gray-300 h-0.5 border border-dashed">
+
+
+</div>

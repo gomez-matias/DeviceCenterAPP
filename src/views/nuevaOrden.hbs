@@ -1,0 +1,143 @@
+<div class="bg-blue-500 text-white text- w-full p-3 mt-5 mb-1">
+  <h1 class="text-2xl text-center font-light">Crear Orden de Reparacion</h1>
+</div>
+<form id="form" name="form" method="POST" class="w-11/12 m-auto max-w-screen-sm px-4 py-5 mx-auto sm:px-6 lg:px-8 flex flex-col gap-7">
+  <div class="flex flex-col gap-5">
+    <div class="w-full flex justify-between flex-row align-center">
+      <h2 class="text-xl w-min font-10">Cliente</h2>
+      <input type="number"  placeholder="ID" name="id_cliente" class="pointer-events-none p-2 text-sm rounded-lg bg-gray-50 border border-gray-100 ">
+    </div>
+    <div class="relative flex flex-row gap-5">
+      <label for="number" class="sr-only">DNI</label>
+      <input type="number" min="9" placeholder="DNI" name="dni"  class="w-full p-2 text-sm rounded-lg bg-gray-50 border border-gray-400 ">
+      <button type="submit" formaction="/cliente/buscar" name="buscar_cliente" class="flex-shrink-0 px-5 py-3 text-sm font-medium text-white bg-blue-500 rounded-lg">Buscar Cliente</button>
+    </div>
+    <div class="relative">
+      <label for="name" class="sr-only">Nombre</label>
+      <input type="text" placeholder="Nombre y Apellido" name="nombre"  class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+    </div>
+    <div class="relative">
+      <label for="phone" class="sr-only">Telefono</label>
+      <input type="number" placeholder="Telefono" name="telefono"  class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+    </div>
+    <div class="relative">
+      <label for="Domicilio" class="sr-only">Domicilio</label>
+      <input type="text" placeholder="Domicilio" name="domicilio"  class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+    </div>
+    <div class="flex flex-auto gap-2">
+      <button type="submit" formaction="/cliente/editar" name="editar_cliente" class="flex-1 px-5 py-3 text-sm font-medium text-white bg-black rounded-lg">Editar</button>
+      <button type="button" name="vaciar_cliente" class="flex-1 px-5 py-3 text-sm font-medium text-white bg-black rounded-lg">Limpiar</button>
+    </div>
+  </div>
+
+  <hr class="bg-gray-200 h-0.5">
+
+  <div class="flex flex-col gap-5">
+    <div class="flex flex-col gap-5">
+      <div class="w-full flex justify-between flex-row align-center">
+        <h2 class="text-xl w-min whitespace-nowrap">Equipo + Imei</h2>
+        <input type="number"  placeholder="ID Equipo + Imei" name="id_equipo_imei" class="pointer-events-none p-2 text-sm rounded-lg bg-gray-50 border border-gray-100 ">
+      </div>
+      <div class="relative">
+        <label for="number" class="sr-only">IMEI</label>
+        <div class="flex flex-row gap-2">
+          <input type="number" placeholder="IMEI" name="imei" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+          <button type="submit" name="buscar_equipo_imei" formaction="/equipo/buscarImei" class="flex-1 px-5 py-3 text-sm font-medium text-white bg-blue-500 rounded-lg">Buscar</button>
+        </div>
+      </div>
+      <hr class="bg-gray-400 h-0.5">
+      <div class="w-full flex justify-between flex-row align-center">
+        <h2 class="text-xl w-min whitespace-nowrap">Equipos</h2>
+        <input type="number" placeholder="ID Equipo" name="id_equipo" class="pointer-events-none p-2 text-sm rounded-lg bg-gray-50 border border-gray-100 ">
+      </div>
+      <div class="flex flex-row gap-2">
+        <input type="text" name="modelo_exacto" placeholder="Modelo Exacto" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+        <button type="submit" name="buscar_equipo_modelo" formaction="/equipo/buscarModelo" class="flex-1 px-5 py-3 text-sm font-medium text-white bg-blue-500 rounded-lg">Buscar</button>
+      </div>
+      <div class="relative">
+        <label for="modelo_comercial" class="sr-only">Nombre Comercial</label>
+        <input type="text" name="modelo_comercial" placeholder="Nombre Comercial" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+      </div>
+      <div class="relative">
+        <label for="marca" class="sr-only">Marca</label>
+        <input type="text" list="marca" placeholder="Marcas" autocomplete="off" name="marca" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+        <datalist id="marca">
+          <option value="Samsung">Samsung</option>
+          <option value="Motorola">Motorola</option>
+          <option value="LG">LG</option>
+          <option value="Xiaomi">Xiaomi</option>
+          <option value="Apple">Apple</option>
+          <option value="Huawei">Huawei</option>
+        </datalist>
+      </div>
+      <div class="relative">
+        <label for="tipo_equipo" class="sr-only">Tipo de Equipo</label>
+        <select name="tipo_equipo" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+          <option value="Celular">Celular</option>
+          <option value="Tablet">Tablet</option>
+          <option value="Laptop">Laptop</option>
+          <option value="PC Escritorio">PC Escritorio</option>
+          <option value="Televisor">Televisor</option>
+          <option value="Otro Tipo de Equipo">Otro Tipo de Equipo</option>
+        </select>
+      </div>
+    </div>
+    <div>
+      <h2>Detalles del Equipo</h2>
+      <textarea name="detalles" placeholder="Detalles" class="border border-gray-300 rounded-md p-2 w-full min-h-full"></textarea>
+    </div>
+    <div>
+      <h2>Fallas</h2>
+      <textarea name="fallas" placeholder="Todas las Fallas" class="border border-gray-300 rounded-md p-2 w-full min-h-full"></textarea>
+    </div>
+    <hr class="bg-gray-400 h-0.5">
+    <div class="relative">
+      {{!-- <input type="text" placeholder="ID Usuario" autocomplete="off" name="id_usuario" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+      <input type="text" placeholder="Rol Usuario" autocomplete="off" name="rol_usuario" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400"> --}}
+      <input type="text" list="usuarios" placeholder="Usuario" autocomplete="off" name="usuario" class="w-full p-2 text-sm rounded-md bg-gray-50 border border-gray-400">
+      <datalist id="usuarios">
+        <option name="Hernan" data-usuarioID="1" data-rol="Atencion"> Hernan </option>
+        <option name="Matias" data-usuarioID="2" data-rol="Atencion"> Matias </option>
+        <option name="Andres" data-usuarioID="3" data-rol="Dueño"> Andres </option>
+        <option name="Braian" data-usuarioID="4" data-rol="Tecnico"> Braian </option>
+        <option name="Marcos" data-usuarioID="5" data-rol="Tecnico"> Marcos </option>
+      </datalist>
+      </div>
+    <button type="submit" formaction="/nuevaOrden" name="crear_orden" class="flex-1 px-5 py-3 text-sm font-medium text-white bg-black rounded-lg">Agregar</button>
+  </div>
+  
+</form>
+
+<div id="sucess" class="block invisible fixed left-10 bottom-10 text-sm text-white text-center font-medium w-max p-4 border rounded border-green-900/10 items-center justify-center" role="alert">
+</div>
+
+  {{!-- Si llegan Mas de Dos clientes con el mismo DNI, renderizar esta parte --}}
+  <span id="modalCliente_bg" class="block invisible fixed z-10 inset-0 bg-gray-300 bg-opacity-75 "></span>
+  <div id="modalCliente" class="block bg-white invisible fixed -translate-x-2/4 -translate-y-2/4 z-20 top-2/4 left-2/4 p-8 bg-white-500 border border-blue-100 shadow-2xl rounded-2xl max-w-xl mx-auto" role="alert">
+    <p class="mt-3 text-lg font-medium sm:mt-0 sm:ml-3">Se encontraron varios resultados</p>
+    <p class="mt-4 text-gray-500">Elige uno para continuar</p>
+    <div id="modalClienteLista" class="mt-6 flex flex-col gap-2">
+      <button id="btn_ninguno" class="flex flex-row justify-between px-12 py-3 text-sm font-medium text-white bg-blue-500 border border-blue-500 rounded active:text-blue-500 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring">
+        Ninguno de los Anteriores
+      </button>
+    </div>
+  </div>
+  {{!-- Parte para doble DNI --}}
+
+<template id="ListButtons">
+  <button class="flex flex-row justify-between px-12 py-3 text-sm font-medium text-white bg-blue-500 border border-blue-500 rounded active:text-blue-500 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring">
+    <span id="clienteId"></span><span id="clienteNombre"></span><span id="clienteTelefono"></span><span id="clienteDomicilio"></span>
+  </button>
+</template>
+
+<template id="ListButtonsEquipos">
+  <button class="flex flex-row justify-between px-12 py-3 text-sm font-medium text-white bg-blue-500 border border-blue-500 rounded active:text-blue-500 hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring"></button>
+</template>
+
+{{!-- <script type="text/javascript">
+  let sucess = '{{sucess}}';
+  let datosCliente = '{{{json datosCliente}}}';
+</script> --}}
+<script type="module" defer src="js/nuevaOrden.js">
+</script>
+
